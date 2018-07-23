@@ -1,28 +1,44 @@
 import React, { Component } from 'react'
 import './App.css'
 import axios from 'axios'
+import Product from './product/Product'
 
 class App extends Component {
-  constructor () {
-    super()
+
+  constructor() {
+    super();
     this.state = {
-      username: '',
-      company:''
+      data :[
+        {
+          "login": "avinaba91",
+          "id": 27242381
+        }, {
+          "login": "avinaba92",
+          "id": 27242382
+        }, {
+          "login": "avinaba93",
+          "id": 27242383
+        }, {
+          "login": "avinaba94",
+          "id": 27242384
+        }, {
+          "login": "avinaba95",
+          "id": 27242385
+        }
+      ]
     }
-    this.handleClick = this.handleClick.bind(this)
   }
-  handleClick () {
-      axios.get('https://api.github.com/users/avinaba91')
-        .then(response => this.setState({username: response.data.company}))
-   }
+  
   render () {
     return (
-      <div className='button__container'>
-        <button className='button' onClick={this.handleClick}>
-          Click Me
-        </button>
-        <p>{this.state.username}</p>
-        <p>{this.state.company}</p>
+      <div className='container'>
+      {
+        this.state.data.map((user, i) =>
+        <div className = "product">
+          <Product login = {user.login} id = {user.id}/> 
+        </div>
+        )
+      }
       </div>
     )
   }
